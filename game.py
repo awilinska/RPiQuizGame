@@ -17,6 +17,8 @@ player_selection = 5
 get_ready = 6
 questions = 7
 results = 8
+mode1 = 9
+mode2 = 0
 
 button_time = time.time()
 button_push = -1
@@ -250,6 +252,136 @@ while running:
                 loop = False
                 p4_r = customtextdraw("czerwony", (800, height/2 + 180), red, 25)
 
+    #MODE 1
+    if (running == True) and (display_now == mode1):
+        
+        display.fill(black)
+            
+        pygame.display.flip()
+
+        p1_points = int(0)
+    p2_points = int(0)
+    p3_points = int(0)
+    p4_points = int(0)
+
+    quenum = int(25)
+    question_number = int(1)
+
+    while question_number <= quenum:
+        draw_question()
+
+        button_pushed = -1
+
+        loop2 = True
+
+        #PLAYER 1
+        while (loop2):
+            if button_push == p1_blue:
+                button_pushed = -1
+                loop2 = False
+                p1_ans = "a"
+            elif button_push == p1_green:
+                button_pushed = -1
+                loop2 = False
+                p1_ans = "b"
+            elif button_push == p1_yellow:
+                button_pushed = -1
+                loop2 = False
+                p1_ans = "c"
+            elif button_push == p1_red:
+                button_pushed = -1
+                loop2 = False
+                p1_ans = "d"
+
+        loop3 = True
+
+        #PLAYER 2
+        while (loop3):
+            if button_push == p2_blue:
+                button_pushed = -1
+                loop3 = False
+                p2_ans = "a"
+            elif button_push == p2_green:
+                button_pushed = -1
+                loop3 = False
+                p2_ans = "b"
+            elif button_push == p2_yellow:
+                button_pushed = -1
+                loop3 = False
+                p2_ans = "c"
+            elif button_push == p2_red:
+                button_pushed = -1
+                loop3 = False
+                p2_ans = "d"
+
+        loop4 = True
+
+        #PLAYER 3
+        while (loop4):
+            if button_push == p3_blue:
+                button_pushed = -1
+                loop4 = False
+                p3_ans = "a"
+            elif button_push == p3_green:
+                button_pushed = -1
+                loop4 = False
+                p3_ans = "b"
+            elif button_push == p3_yellow:
+                button_pushed = -1
+                loop4 = False
+                p3_ans = "c"
+            elif button_push == p3_red:
+                button_pushed = -1
+                loop4 = False
+                p3_ans = "d"
+
+        loop5 = True
+
+        #PLAYER 4
+        while (loop5):
+            if button_push == p4_blue:
+                button_pushed = -1
+                loop5 = False
+                p4_ans = "a"
+            elif button_push == p4_green:
+                button_pushed = -1
+                loop5 = False
+                p4_ans = "b"
+            elif button_push == p4_yellow:
+                button_pushed = -1
+                loop5 = False
+                p4_ans = "c"
+            elif button_push == p4_red:
+                button_pushed = -1
+                loop5 = False
+                p4_ans = "d"
+
+            if p1_ans == correct:
+                p1_points = p1_points + 10
+            else:
+                p1_points = p1_points
+
+            if p2_ans == correct:
+                p2_points = p2_points + 10
+            else:
+                p2_points = p2_points
+
+            if p3_ans == correct:
+                p3_points = p3_points + 10
+            else:
+                p3_points = p3_points
+
+            if p4_ans == correct:
+                p4_points = p4_points + 10
+            else:
+                p4_points = p4_points
+
+        print(p1_points)
+        print(p2_points)
+        print(p3_points)
+        print(p4_points)
+
+        question_number = question_number + 1
 
 
 pygame.quit()
