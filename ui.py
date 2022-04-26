@@ -19,51 +19,33 @@ def draw_menu():
     control_test_info = textdraw("Sprawdź działanie przycisków w kontrolerach", 430, gray, 15)
     about = textdraw("Informacje", 500, red, 35)
     about_info = textdraw("Informacje i źródła", 530, gray, 15)
-    hint = textdraw("Podpowiedź: używaj klawiszy o odpowiednich kolorach, by poruszać się po menu", 600, gray, 20)
+    hint = textdraw("Podpowiedź: używaj klawiszy o odpowiednich kolorach na kontrolerze GRACZA 1, by poruszać się po menu", 600, gray, 20)
 
 def rand_line(fname):
     lines = open(fname, encoding='utf8').read().splitlines()
     return random.choice(lines)
 
-# def draw_question():
-#     global correct
+def draw_info_mode1():
+    background = pygame.image.load("/home/pi/Desktop/layout-waiting.png").convert()
+    display.blit(background, background_position)
 
-#     line = rand_line("/home/pi/Desktop/QUESTIONS.txt")
-#     detail = line.split(",")
+    title = textdraw("Tryb 1", 200, black, 45)
 
-#     question = textdraw((detail[0]), 100, white, 45)
-#     a = textdraw((detail[1]), 200, blue, 35)
-#     b = textdraw((detail[2]), 300, green, 35)
-#     c = textdraw((detail[3]), 400, yellow, 35)
-#     d = textdraw((detail[4]), 500, red, 35)
+    info1 = textdraw("Każdy z graczy odpowiada po kolei na pytanie.", 300, black, 30)
+    info2 = textdraw("Numer gracza, który powinien udzielić odpowiedzi podświetla się na zielono.", 350, black, 30)
+    info3 = textdraw("Po udzieleniu odpowiedz przez wszystkich graczy wyświetli się kolejne pytanie.", 400, black, 30)
+    info4 = textdraw("Wygrywa gracz, który uzyskał największą liczbę punktów.", 450, black, 30)
 
-#     ready = customtextdraw("Gotowi:", (50,550), white, 25)
-#     player1 = customtextdraw("Gracz 1", (200,600), white, 25)
-#     player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
-#     player3 = customtextdraw("Gracz 3", (600,600), white, 25)
-#     player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+def draw_info_mode2():
+    background = pygame.image.load("/home/pi/Desktop/layout-waiting.png").convert()
+    display.blit(background, background_position)
 
-#     correct = detail[5]
+    title = textdraw("Tryb 2", 200, black, 45)
 
-#     pygame.draw.circle(display, magenta, (1000,600), 50, 0)
-
-#     timer = customtextdraw("15", (975,570), black, 40)
-
-# def draw_results():
-#     results = textdraw("Wyniki", 100, white, 45)
-
-#     first = textdraw("1. Gracz 3    50 pkt", 250, yellow, 45)
-#     second = textdraw("2. Gracz 1   30 pkt", 350, magenta, 45)
-#     third = textdraw("3. Gracz 4    20 pkt", 450, magenta, 45)
-#     fourth = textdraw("4. Gracz 2   10 pkt", 550, magenta, 45)
-
-#     quit = textdraw("powrót do menu", 650, red, 25)
-
-def draw_getready():
-    time = 10
-
-    get_ready = textdraw("Przygotujcie się", height/2, white, 60)
-    timer = textdraw(("Gra rozpocznie się za " + str(time)), height/2+70, white, 30)
+    info1 = textdraw("Gracz zgłasza się do odpowiedzi na pytanie klikając niebieski przycisk.", 300, black, 30)
+    info2 = textdraw("Numer gracza, który powinien udzielić odpowiedzi podświetla się na zielono.", 350, black, 30)
+    info3 = textdraw("Po udzieleniu odpowiedz przez wybranego gracza wyświetli się kolejne pytanie.", 400, black, 30)
+    info4 = textdraw("Wygrywa gracz, który uzyskał największą liczbę punktów.", 450, black, 30)
 
 def draw_players():
     button = textdraw("Kliknij niebieski przycisk na kontrolerze", 100, white, 45)
@@ -84,10 +66,9 @@ def draw_title():
     title = textdraw("Domoturniej - domowy turniej wiedzy", height/2-100, black, 60)
     start = textdraw("START", height/2+70, blue, 30)
     author = textdraw("by Alicja Wilińska", height/2+200, gray, 15)
-    hint = textdraw("Podpowiedź: używaj klawiszy o odpowiednich kolorach, by poruszać się po menu", 600, gray, 20)
+    hint = textdraw("Podpowiedź: używaj klawiszy o odpowiednich kolorach na kontrolerze GRACZA 1, by poruszać się po menu", 600, gray, 20)
 
 def draw_test():
-
     title = textdraw("TEST KONTROLERÓW", height/2 - 280, white, 40)
 
     p1 = textdraw("Gracz 1", height/2 - 200, white, 30)
