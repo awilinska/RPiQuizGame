@@ -3,9 +3,9 @@ from pygame.locals import *
 from text_creator import *
 import RPi.GPIO as GPIO
 from ui import *
-#from button_setup import *
 import sys
 import time
+import random
 
 pygame.init()
 
@@ -19,7 +19,8 @@ questions = 7
 results = 8
 mode1 = 9
 mode2 = 0
-play = 10
+info_mode1 = 10
+info_mode2 = 11
 
 button_time = time.time()
 button_push = -1
@@ -136,12 +137,12 @@ while running:
             if (button_push == p1_blue):
                 button_push = -1
                 loop = False
-                display_now = mode1
+                display_now = info_mode1
 
             if (button_push == p1_green):
                 button_push = -1
                 loop = False
-                display_now = mode2
+                display_now = info_mode2
 
             if (button_push == p1_yellow):
                 button_push = -1
@@ -180,6 +181,7 @@ while running:
         loop = True
 
         while(loop):
+
             # PLAYER 1
             if (button_push == p1_blue):
                 button_push = -1
@@ -252,6 +254,22 @@ while running:
                 loop = False
                 p4_r = customtextdraw("czerwony", (800, height/2 + 180), red, 25)
 
+    # ABOUT MODE 1
+    if (running == True) and (display_now == info_mode1):
+
+        display.fill(black)
+        draw_info_mode1()
+                
+        pygame.display.flip()
+
+        loop = True
+
+        while (loop):
+            if (button_push == p1_red):
+                button_push = -1
+                loop = False
+                display_now = mode1
+
     # MODE 1
     if (running == True) and (display_now == mode1):
 
@@ -260,8 +278,12 @@ while running:
         p3_points = int(0)
         p4_points = int(0)
 
-        quenum = int(5)
+        quenum = int(25)
         question_number = int(1)
+        i = int(0)
+
+        lines = open("/home/pi/Desktop/QUESTIONS.txt").readlines()
+        questions = random.sample(lines, 25)
 
         loop = True
 
@@ -273,19 +295,20 @@ while running:
                 background = pygame.image.load("/home/pi/Desktop/question-layout.png").convert()
                 display.blit(background, background_position)
 
-                line = rand_line("/home/pi/Desktop/QUESTIONS.txt")
+                line = questions[i]
                 detail = line.split(",")
 
+                num = textdraw(("Pytanie " + str(question_number)), 65, black, 25)
                 question = textdraw((detail[0]), 100, black, 45)
                 a = textdraw((detail[1]), 200, blue, 35)
                 b = textdraw((detail[2]), 300, green, 35)
                 c = textdraw((detail[3]), 400, yellow, 35)
                 d = textdraw((detail[4]), 500, red, 35)
 
-                ready = customtextdraw("Gotowi:", (50,550), white, 25)
-                player1 = customtextdraw("Gracz 1", (200,600), white, 25)
+                ready = customtextdraw("Odpowiada:", (50,600), white, 25)
+                player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
                 player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
-                player3 = customtextdraw("Gracz 3", (600,600), white, 25)
+                player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
                 player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
 
                 correct = detail[5]
@@ -302,6 +325,12 @@ while running:
 
                 #PLAYER 1
                 while (loop2):
+                    player1 = customtextdraw("Gracz 1", (200,600), green, 25)
+                    player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
+                    player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
+                    player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                    pygame.display.flip()
+
                     if button_push == p1_blue:
                         button_push = -1
                         loop2 = False
@@ -327,6 +356,12 @@ while running:
 
                 #PLAYER 2
                 while (loop3):
+                    player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
+                    player2 = customtextdraw("Gracz 2", (400,600), green, 25)
+                    player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
+                    player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                    pygame.display.flip()
+
                     if button_push == p2_blue:
                         button_push = -1
                         loop3 = False
@@ -352,6 +387,12 @@ while running:
 
                 #PLAYER 3
                 while (loop4):
+                    player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
+                    player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
+                    player3 = customtextdraw("Gracz 3", (600,600), green, 25)
+                    player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                    pygame.display.flip()
+
                     if button_push == p3_blue:
                         button_push = -1
                         loop4 = False
@@ -377,6 +418,12 @@ while running:
 
                 #PLAYER 4
                 while (loop5):
+                    player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
+                    player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
+                    player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
+                    player4 = customtextdraw("Gracz 4", (800,600), green, 25)
+                    pygame.display.flip()
+
                     if button_push == p4_blue:
                         button_push = -1
                         loop5 = False
@@ -419,6 +466,7 @@ while running:
                     p4_points = p4_points
 
                 question_number = question_number + 1
+                i = i + 1
             
             print(p1_points)
             print(p2_points)
@@ -428,6 +476,22 @@ while running:
             loop = False
             display_now = results
 
+    # ABOUT MODE 2
+    if (running == True) and (display_now == info_mode2):
+
+        display.fill(black)
+        draw_info_mode2()
+                
+        pygame.display.flip()
+
+        loop = True
+
+        while (loop):
+            if (button_push == p1_red):
+                button_push = -1
+                loop = False
+                display_now = mode2
+
     # MODE 2
     if (running == True) and (display_now == mode2):
 
@@ -436,8 +500,12 @@ while running:
         p3_points = int(0)
         p4_points = int(0)
 
-        quenum = int(5)
+        quenum = int(25)
         question_number = int(1)
+        i = int(0)
+
+        lines = open("/home/pi/Desktop/QUESTIONS.txt").readlines()
+        questions = random.sample(lines, 25)
 
         loop = True
 
@@ -449,19 +517,20 @@ while running:
                 background = pygame.image.load("/home/pi/Desktop/question-layout.png").convert()
                 display.blit(background, background_position)
 
-                line = rand_line("/home/pi/Desktop/QUESTIONS.txt")
+                line = questions[i]
                 detail = line.split(",")
 
+                num = textdraw(("Pytanie " + str(question_number)), 65, black, 25)
                 question = textdraw((detail[0]), 100, black, 45)
                 a = textdraw((detail[1]), 200, blue, 35)
                 b = textdraw((detail[2]), 300, green, 35)
                 c = textdraw((detail[3]), 400, yellow, 35)
                 d = textdraw((detail[4]), 500, red, 35)
 
-                ready = customtextdraw("Gotowi:", (50,550), white, 25)
-                player1 = customtextdraw("Gracz 1", (200,600), white, 25)
+                ready = customtextdraw("Odpowiada:", (50,600), white, 25)
+                player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
                 player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
-                player3 = customtextdraw("Gracz 3", (600,600), white, 25)
+                player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
                 player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
 
                 correct = detail[5]
@@ -502,6 +571,12 @@ while running:
 
                 while (loop3):
                     if (answering == "player1"):
+                        player1 = customtextdraw("Gracz 1", (200,600), green, 25)
+                        player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
+                        player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
+                        player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                        pygame.display.flip()
+
                         if button_push == p1_blue:
                             button_push = -1
                             loop3 = False
@@ -540,6 +615,12 @@ while running:
                             print("p1 ok")
                         
                     elif (answering == "player2"):
+                        player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
+                        player2 = customtextdraw("Gracz 2", (400,600), green, 25)
+                        player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
+                        player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                        pygame.display.flip()
+
                         if button_push == p2_blue:
                             button_push = -1
                             loop3 = False
@@ -578,6 +659,12 @@ while running:
                             print("p2 ok")
 
                     elif (answering == "player3"):
+                        player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
+                        player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
+                        player3 = customtextdraw("Gracz 3", (600,600), green, 25)
+                        player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                        pygame.display.flip()
+
                         if button_push == p3_blue:
                             button_push = -1
                             loop3 = False
@@ -616,6 +703,12 @@ while running:
                             print("p3 ok")
 
                     elif (answering == "player4"):
+                        player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
+                        player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
+                        player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
+                        player4 = customtextdraw("Gracz 4", (800,600), green, 25)
+                        pygame.display.flip()
+
                         if button_push == p4_blue:
                             button_push = -1
                             loop3 = False
@@ -654,6 +747,7 @@ while running:
                             print("p4 ok")
 
                 question_number = question_number + 1
+                i = i + 1
 
             print(p1_points)
             print(p2_points)
