@@ -2,7 +2,14 @@ import pygame
 from text_creator import *
 import random
 
+pygame.mixer.init()
+
 background_position = [0,0]
+question_sound = pygame.mixer.Sound("/home/pi/Desktop/que.mp3")
+answer_sound = pygame.mixer.Sound("/home/pi/Desktop/ans.mp3")
+results_sound = pygame.mixer.Sound("/home/pi/Desktop/app.mp3")
+waiting_sound = pygame.mixer.Sound("/home/pi/Desktop/wait.mp3")
+declaration_sound = pygame.mixer.Sound("/home/pi/Desktop/dec.mp3")
 
 def draw_menu():
 
@@ -63,39 +70,42 @@ def draw_title():
     background = pygame.image.load("/home/pi/Desktop/start-layout.png").convert()
     display.blit(background, background_position)
 
-    title = textdraw("Domoturniej - domowy turniej wiedzy", height/2-100, black, 60)
-    start = textdraw("START", height/2+70, blue, 30)
-    author = textdraw("by Alicja Wilińska", height/2+200, gray, 15)
-    hint = textdraw("Podpowiedź: używaj klawiszy o odpowiednich kolorach na kontrolerze GRACZA 1, by poruszać się po menu", 600, gray, 20)
+    textdraw("Domoturniej - domowy turniej wiedzy", height/2-100, black, 60)
+    textdraw("START", height/2+70, blue, 30)
+    textdraw("by Alicja Wilińska", height/2+200, gray, 15)
+    textdraw("Podpowiedź: używaj klawiszy o odpowiednich kolorach na kontrolerze GRACZA 1, by poruszać się po menu", 600, gray, 20)
 
 def draw_test():
-    title = textdraw("TEST KONTROLERÓW", height/2 - 280, white, 40)
+    background = pygame.image.load("/home/pi/Desktop/layout-waiting.png").convert()
+    display.blit(background, background_position)
 
-    p1 = textdraw("Gracz 1", height/2 - 200, white, 30)
-    p1_b = customtextdraw("niebieski", (200, height/2 - 180), white, 25)
-    p1_g = customtextdraw("zielony", (400, height/2 - 180), white, 25)
-    p1_y = customtextdraw("żółty", (600, height/2 - 180), white, 25)
-    p1_r = customtextdraw("czerwony", (800, height/2 - 180), white, 25)
+    title = textdraw("TEST KONTROLERÓW", height/2 - 280, black, 40)
 
-    p2 = textdraw("Gracz 2", height/2 - 80, white, 30)
-    p2_b = customtextdraw("niebieski", (200, height/2 - 60), white, 25)
-    p2_g = customtextdraw("zielony", (400, height/2 - 60), white, 25)
-    p2_y = customtextdraw("żółty", (600, height/2 - 60), white, 25)
-    p2_r = customtextdraw("czerwony", (800, height/2 - 60), white, 25)
+    p1 = textdraw("Gracz 1", height/2 - 220, black, 30)
+    p1_b = customtextdraw("niebieski", (200, height/2 - 180), gray, 25)
+    p1_g = customtextdraw("zielony", (400, height/2 - 180), gray, 25)
+    p1_y = customtextdraw("żółty", (600, height/2 - 180), gray, 25)
+    p1_r = customtextdraw("czerwony", (800, height/2 - 180), gray, 25)
 
-    p3 = textdraw("Gracz 3", height/2 + 40, white, 30)
-    p3_b = customtextdraw("niebieski", (200, height/2 + 60), white, 25)
-    p3_g = customtextdraw("zielony", (400, height/2 + 60), white, 25)
-    p3_y = customtextdraw("żółty", (600, height/2 + 60), white, 25)
-    p3_r = customtextdraw("czerwony", (800, height/2 + 60), white, 25)
+    p2 = textdraw("Gracz 2", height/2 - 100, black, 30)
+    p2_b = customtextdraw("niebieski", (200, height/2 - 60), gray, 25)
+    p2_g = customtextdraw("zielony", (400, height/2 - 60), gray, 25)
+    p2_y = customtextdraw("żółty", (600, height/2 - 60), gray, 25)
+    p2_r = customtextdraw("czerwony", (800, height/2 - 60), gray, 25)
 
-    p4 = textdraw("Gracz 4", height/2 + 160, white, 30)
-    p4_b = customtextdraw("niebieski", (200, height/2 + 180), white, 25)
-    p4_g = customtextdraw("zielony", (400, height/2 + 180), white, 25)
-    p4_y = customtextdraw("żółty", (600, height/2 + 180), white, 25)
-    p4_r = customtextdraw("czerwony", (800, height/2 + 180), white, 25)
+    p3 = textdraw("Gracz 3", height/2 + 20, black, 30)
+    p3_b = customtextdraw("niebieski", (200, height/2 + 60), gray, 25)
+    p3_g = customtextdraw("zielony", (400, height/2 + 60), gray, 25)
+    p3_y = customtextdraw("żółty", (600, height/2 + 60), gray, 25)
+    p3_r = customtextdraw("czerwony", (800, height/2 + 60), gray, 25)
 
-    back = textdraw("powrót", height/2 + 280, red, 20)
+    p4 = textdraw("Gracz 4", height/2 + 140, black, 30)
+    p4_b = customtextdraw("niebieski", (200, height/2 + 180), gray, 25)
+    p4_g = customtextdraw("zielony", (400, height/2 + 180), gray, 25)
+    p4_y = customtextdraw("żółty", (600, height/2 + 180), gray, 25)
+    p4_r = customtextdraw("czerwony", (800, height/2 + 180), gray, 25)
+
+    back = textdraw("Test zamknie się automatycznie w ciągu 5 sekund od wciśnięcia ostatniego przycisku.", height/2 + 280, gray, 20)
 
 def draw_info():
     background = pygame.image.load("/home/pi/Desktop/details-layout.png").convert()
@@ -104,5 +114,19 @@ def draw_info():
     author = textdraw("Autor: Alicja Wilińska", height/2, black, 30)
     info = textdraw("Gra wykonana w ramach pracy inżynierskiej.", height/2+70, black, 30)
     back = textdraw("Powrót", height/2+200, red, 15)
+    
+def draw_quenum():
 
+    background = pygame.image.load("/home/pi/Desktop/layout-menu.png").convert()
+    display.blit(background, background_position)
+
+
+    title = textdraw("Wybierz ilość pytań", 100, black, 45)
+    mode1 = textdraw("10", 200, blue, 35)
+    mode1_info = textdraw("Szybka rozgrywka", 230, gray, 15)
+    mode2 = textdraw("25", 300, green, 35)
+    mode2_info = textdraw("Standardowe wyzwanie", 330, gray, 15)
+    control_test = textdraw("50", 400, yellow, 35)
+    control_test_info = textdraw("Maraton pełen wiedzy", 430, gray, 15)
+    about = textdraw("powrót do menu", 520, red, 35)
 
