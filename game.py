@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from pygame import mixer
 from text_creator import *
 import RPi.GPIO as GPIO
 from ui import *
@@ -8,6 +9,9 @@ import time
 import random
 
 pygame.init()
+pygame.mixer.init()
+
+clock = pygame.time.Clock()
 
 start_screen = 1
 main_menu = 2
@@ -21,6 +25,8 @@ mode1 = 9
 mode2 = 0
 info_mode1 = 10
 info_mode2 = 11
+quenum_1 = 12
+quenum_2 = 13
 
 button_time = time.time()
 button_push = -1
@@ -137,12 +143,12 @@ while running:
             if (button_push == p1_blue):
                 button_push = -1
                 loop = False
-                display_now = info_mode1
+                display_now = quenum_1
 
             if (button_push == p1_green):
                 button_push = -1
                 loop = False
-                display_now = info_mode2
+                display_now = quenum_2
 
             if (button_push == p1_yellow):
                 button_push = -1
@@ -178,9 +184,14 @@ while running:
             
         pygame.display.flip()
 
+        timer_start = time.time()
+        timer_stop = 5
+
         loop = True
 
         while(loop):
+
+            timer = time.time() - timer_start
 
             # PLAYER 1
             if (button_push == p1_blue):
@@ -251,25 +262,65 @@ while running:
                 p4_y = customtextdraw("żółty", (600, height/2 + 180), yellow, 25)
             if (button_push == p4_red):
                 button_push = -1
-                loop = False
                 p4_r = customtextdraw("czerwony", (800, height/2 + 180), red, 25)
 
+            if timer > timer_stop:
+                loop = False
+                display_now = main_menu
+
+    #QUESTIONS NUMBER MODE 1
+    if (running == True) and (display_now == quenum_1):
+
+        display.fill(black)
+        draw_quenum()
+        pygame.display.flip()
+
+        loop = True
+        
+        while(loop):
+            if (button_push == p1_blue):
+                button_push = -1
+                loop = False
+                quenum = int(10)
+                display_now = info_mode1
+
+            if (button_push == p1_green):
+                button_push = -1
+                loop = False
+                quenum = int(25)
+                display_now = info_mode1
+
+            if (button_push == p1_yellow):
+                button_push = -1
+                loop = False
+                quenum = int(50)
+                display_now = info_mode1
+
+            if (button_push == p1_red):
+                button_push = -1
+                loop = False
+                display_now = main_menu
+    
     # ABOUT MODE 1
     if (running == True) and (display_now == info_mode1):
 
         display.fill(black)
         draw_info_mode1()
-                
         pygame.display.flip()
 
-        loop = True
+        timer_start = time.time()
+        timer_stop = 10
 
-        while (loop):
-            if (button_push == p1_red):
-                button_push = -1
+        loop = True
+        
+        while loop:
+            waiting_sound.play()
+            timer = time.time() - timer_start
+
+            if timer > timer_stop:
                 loop = False
                 display_now = mode1
-
+                        
     # MODE 1
     if (running == True) and (display_now == mode1):
 
@@ -278,7 +329,6 @@ while running:
         p3_points = int(0)
         p4_points = int(0)
 
-        quenum = int(25)
         question_number = int(1)
         i = int(0)
 
@@ -313,9 +363,7 @@ while running:
 
                 correct = detail[5]
 
-                pygame.draw.circle(display, magenta, (1000,600), 50, 0)
-
-                timer = customtextdraw("15", (975,570), black, 40)
+                question_sound.play()
 
                 pygame.display.flip()
 
@@ -336,21 +384,25 @@ while running:
                         loop2 = False
                         p1_ans = "a"
                         print("p1 ok")
+                        answer_sound.play()
                     elif button_push == p1_green:
                         button_push = -1
                         loop2 = False
                         p1_ans = "b"
                         print("p1 ok")
+                        answer_sound.play()
                     elif button_push == p1_yellow:
                         button_push = -1
                         loop2 = False
                         p1_ans = "c"
                         print("p1 ok")
+                        answer_sound.play()
                     elif button_push == p1_red:
                         button_push = -1
                         loop2 = False
                         p1_ans = "d"
                         print("p1 ok")
+                        answer_sound.play()
 
                 loop3 = True
 
@@ -367,21 +419,25 @@ while running:
                         loop3 = False
                         p2_ans = "a"
                         print("p2 ok")
+                        answer_sound.play()
                     elif button_push == p2_green:
                         button_push = -1
                         loop3 = False
                         p2_ans = "b"
                         print("p2 ok")
+                        answer_sound.play()
                     elif button_push == p2_yellow:
                         button_push = -1
                         loop3 = False
                         p2_ans = "c"
                         print("p2 ok")
+                        answer_sound.play()
                     elif button_push == p2_red:
                         button_push = -1
                         loop3 = False
                         p2_ans = "d"
                         print("p2 ok")
+                        answer_sound.play()
 
                 loop4 = True
 
@@ -398,21 +454,25 @@ while running:
                         loop4 = False
                         p3_ans = "a"
                         print("p3 ok")
+                        answer_sound.play()
                     elif button_push == p3_green:
                         button_push = -1
                         loop4 = False
                         p3_ans = "b"
                         print("p3 ok")
+                        answer_sound.play()
                     elif button_push == p3_yellow:
                         button_push = -1
                         loop4 = False
                         p3_ans = "c"
                         print("p3 ok")
+                        answer_sound.play()
                     elif button_push == p3_red:
                         button_push = -1
                         loop4 = False
                         p3_ans = "d"
                         print("p3 ok")
+                        answer_sound.play()
 
                 loop5 = True
 
@@ -476,6 +536,39 @@ while running:
             loop = False
             display_now = results
 
+    #QUESTIONS NUMBER MODE 2
+    if (running == True) and (display_now == quenum_2):
+
+        display.fill(black)
+        draw_quenum()
+        pygame.display.flip()
+
+        loop = True
+        
+        while(loop):
+            if (button_push == p1_blue):
+                button_push = -1
+                loop = False
+                quenum = int(10)
+                display_now = info_mode2
+
+            if (button_push == p1_green):
+                button_push = -1
+                loop = False
+                quenum = int(25)
+                display_now = info_mode2
+
+            if (button_push == p1_yellow):
+                button_push = -1
+                loop = False
+                quenum = int(50)
+                display_now = info_mode2
+
+            if (button_push == p1_red):
+                button_push = -1
+                loop = False
+                display_now = main_menu
+
     # ABOUT MODE 2
     if (running == True) and (display_now == info_mode2):
 
@@ -484,11 +577,16 @@ while running:
                 
         pygame.display.flip()
 
-        loop = True
+        timer_start = time.time()
+        timer_stop = 10
 
-        while (loop):
-            if (button_push == p1_red):
-                button_push = -1
+        loop = True
+        
+        while loop:
+            waiting_sound.play()
+            timer = time.time() - timer_start
+
+            if timer > timer_stop:
                 loop = False
                 display_now = mode2
 
@@ -500,7 +598,7 @@ while running:
         p3_points = int(0)
         p4_points = int(0)
 
-        quenum = int(25)
+        quenum = int(5)
         question_number = int(1)
         i = int(0)
 
@@ -535,9 +633,7 @@ while running:
 
                 correct = detail[5]
 
-                pygame.draw.circle(display, magenta, (1000,600), 50, 0)
-
-                timer = customtextdraw("15", (975,570), black, 40)
+                question_sound.play()
 
                 pygame.display.flip()
 
@@ -552,18 +648,22 @@ while running:
                         button_push = -1
                         loop2 = False
                         answering = "player1"
+                        declaration_sound.play()
                     elif (button_push == p2_blue):
                         button_push = -1
                         loop2 = False
                         answering = "player2"
+                        declaration_sound.play()
                     elif (button_push == p3_blue):
                         button_push = -1
                         loop2 = False
                         answering = "player3"
+                        declaration_sound.play()
                     elif (button_push == p4_blue):
                         button_push = -1
                         loop2 = False
                         answering = "player4"
+                        declaration_sound.play()
 
                 button_push = -1
 
@@ -760,16 +860,31 @@ while running:
     # RESULTS
     if (running == True) and (display_now == results):
         display.fill(black)
+        results_sound.play()
 
         background = pygame.image.load("/home/pi/Desktop/layout-results.png").convert()
         display.blit(background, background_position)
+
+        scores = [('Gracz 1', p1_points),
+            ('Gracz 2', p2_points),
+            ('Gracz 3', p3_points),
+            ('Gracz 4', p4_points)]
+
+        def sort_key(score):
+            return score[1]
+
+        scores.sort(key=sort_key, reverse=True)
+
+        def scoring(x):
+            scr = str(scores[x][0]) + "    " + str(scores[x][1]) + " pkt"
+            return scr
         
         results = textdraw("Wyniki", 100, white, 45)
 
-        first = textdraw(("Gracz 1:    " + str(p1_points) + " pkt"), 250, magenta, 45)
-        second = textdraw(("Gracz 2:    " + str(p2_points)+ " pkt"), 350, magenta, 45)
-        third = textdraw(("Gracz 3:    " + str(p3_points) + " pkt"), 450, magenta, 45)
-        fourth = textdraw(("Gracz 4:    " + str(p4_points) + " pkt"), 550, magenta, 45)
+        first = textdraw(scoring(0), 250, magenta, 45)
+        second = textdraw(scoring(1), 350, magenta, 45)
+        third = textdraw(scoring(2), 450, magenta, 45)
+        fourth = textdraw(scoring(3), 550, magenta, 45)
 
         quit = textdraw("powrót do menu", 650, red, 25)
 
@@ -782,7 +897,5 @@ while running:
                 button_push = -1
                 loop = False
                 display_now = main_menu
-
-
 
 pygame.quit()
