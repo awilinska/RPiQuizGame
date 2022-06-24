@@ -8,3 +8,11 @@ You can download/modify this software for personal and education use. Please do 
 
 You can download used resources individually or in .ZIP archive from this link:
 https://drive.google.com/drive/folders/1ydFJ2Gg9W1HSUXbt4LHvLOZa3O7fbyRs?usp=sharing
+
+All of the sounds came from the https://mixkit.co/free-sound-effects/
+
+All of the backgrounds is my work. 
+
+Enjoy, educate and have fun!
+
+A. Wilinska
