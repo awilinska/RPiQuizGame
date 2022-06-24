@@ -7,49 +7,15 @@ from ui import *
 import sys
 import time
 import random
+from variables import *
 
 pygame.init()
 pygame.mixer.init()
 
 clock = pygame.time.Clock()
 
-start_screen = 1
-main_menu = 2
-controller_test = 3
-details = 4
-player_selection = 5
-get_ready = 6
-questions = 7
-results = 8
-mode1 = 9
-mode2 = 0
-info_mode1 = 10
-info_mode2 = 11
-quenum_1 = 12
-quenum_2 = 13
-
 button_time = time.time()
 button_push = -1
-
-p1_blue = 7
-p1_green = 11
-p1_yellow = 15
-p1_red = 13
-
-p2_blue = 29
-p2_green = 31
-p2_yellow = 33
-p2_red = 35
-
-p3_blue = 32
-p3_green = 36
-p3_yellow = 40
-p3_red = 37
-
-p4_blue = 12
-p4_green = 16
-p4_yellow = 18
-p4_red = 22
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(p1_blue, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -77,7 +43,7 @@ def button_pushed(channel):
 	global button_push
 	time_now = time.time()
 	if (time_now - button_time >= 0.3):
-			button_push = channel
+		button_push = channel
 	button_time = time_now
 
 GPIO.add_event_detect(p1_blue, GPIO.BOTH, callback=button_pushed)
@@ -197,72 +163,72 @@ while running:
             if (button_push == p1_blue):
                 button_push = -1
                 loop = False
-                p1_b = customtextdraw("niebieski", (200, height/2 - 180), blue, 25) 
+                customtextdraw("niebieski", (200, height/2 - 180), blue, 25) 
             if (button_push == p1_green):
                 button_push = -1
                 loop = False
-                p1_g = customtextdraw("zielony", (400, height/2 - 180), green, 25)
+                customtextdraw("zielony", (400, height/2 - 180), green, 25)
             if (button_push == p1_yellow):
                 button_push = -1
                 loop = False
-                p1_y = customtextdraw("żółty", (600, height/2 - 180), yellow, 25)
+                customtextdraw("żółty", (600, height/2 - 180), yellow, 25)
             if (button_push == p1_red):
                 button_push = -1
                 loop = False
-                p1_r = customtextdraw("czerwony", (800, height/2 - 180), red, 25)
+                customtextdraw("czerwony", (800, height/2 - 180), red, 25)
 
             #PLAYER 2
             if (button_push == p2_blue):
                 button_push = -1
                 loop = False
-                p2_b = customtextdraw("niebieski", (200, height/2 - 60), blue, 25)
+                customtextdraw("niebieski", (200, height/2 - 60), blue, 25)
             if (button_push == p2_green):
                 button_push = -1
                 loop = False
-                p2_g = customtextdraw("zielony", (400, height/2 - 60), green, 25)
+                customtextdraw("zielony", (400, height/2 - 60), green, 25)
             if (button_push == p2_yellow):
                 button_push = -1
                 loop = False
-                p2_y = customtextdraw("żółty", (600, height/2 - 60), yellow, 25)
+                customtextdraw("żółty", (600, height/2 - 60), yellow, 25)
             if (button_push == p2_red):
                 button_push = -1
                 loop = False
-                p2_r = customtextdraw("czerwony", (800, height/2 - 60), red, 25)
+                customtextdraw("czerwony", (800, height/2 - 60), red, 25)
 
             #PLAYER 3
             if (button_push == p3_blue):
                 button_push = -1
                 loop = False
-                p3_b = customtextdraw("niebieski", (200, height/2 + 60), blue, 25)
+                customtextdraw("niebieski", (200, height/2 + 60), blue, 25)
             if (button_push == p3_green):
                 button_push = -1
                 loop = False
-                p3_g = customtextdraw("zielony", (400, height/2 + 60), green, 25)
+                customtextdraw("zielony", (400, height/2 + 60), green, 25)
             if (button_push == p3_yellow):
                 button_push = -1
                 loop = False
-                p3_y = customtextdraw("żółty", (600, height/2 + 60), yellow, 25)
+                customtextdraw("żółty", (600, height/2 + 60), yellow, 25)
             if (button_push == p3_red):
                 button_push = -1
                 loop = False
-                p3_r = customtextdraw("czerwony", (800, height/2 + 60), red, 25)
+                customtextdraw("czerwony", (800, height/2 + 60), red, 25)
 
             #PLAYER 4
             if (button_push == p4_blue):
                 button_push = -1
                 loop = False
-                p4_b = customtextdraw("niebieski", (200, height/2 + 180), blue, 25)
+                customtextdraw("niebieski", (200, height/2 + 180), blue, 25)
             if (button_push == p4_green):
                 button_push = -1
                 loop = False
-                p4_g = customtextdraw("zielony", (400, height/2 + 180), green, 25)
+                customtextdraw("zielony", (400, height/2 + 180), green, 25)
             if (button_push == p4_yellow):
                 button_push = -1
                 loop = False
-                p4_y = customtextdraw("żółty", (600, height/2 + 180), yellow, 25)
+                customtextdraw("żółty", (600, height/2 + 180), yellow, 25)
             if (button_push == p4_red):
                 button_push = -1
-                p4_r = customtextdraw("czerwony", (800, height/2 + 180), red, 25)
+                customtextdraw("czerwony", (800, height/2 + 180), red, 25)
 
             if timer > timer_stop:
                 loop = False
@@ -324,12 +290,6 @@ while running:
     # MODE 1
     if (running == True) and (display_now == mode1):
 
-        p1_points = int(0)
-        p2_points = int(0)
-        p3_points = int(0)
-        p4_points = int(0)
-
-        question_number = int(1)
         i = int(0)
 
         lines = open("/home/pi/Desktop/QUESTIONS.txt").readlines()
@@ -342,24 +302,24 @@ while running:
             while question_number <= quenum:
                 display.fill(black)
 
-                background = pygame.image.load("/home/pi/Desktop/question-layout.png").convert()
+                background = pygame.image.load(layout_question).convert()
                 display.blit(background, background_position)
 
                 line = questions[i]
                 detail = line.split(",")
 
-                num = textdraw(("Pytanie " + str(question_number)), 65, black, 25)
-                question = textdraw((detail[0]), 100, black, 45)
-                a = textdraw((detail[1]), 200, blue, 35)
-                b = textdraw((detail[2]), 300, green, 35)
-                c = textdraw((detail[3]), 400, yellow, 35)
-                d = textdraw((detail[4]), 500, red, 35)
+                textdraw(("Pytanie " + str(question_number)), 65, black, 25)
+                textdraw((detail[0]), 100, black, 45)
+                textdraw((detail[1]), 200, blue, 35)
+                textdraw((detail[2]), 300, green, 35)
+                textdraw((detail[3]), 400, yellow, 35)
+                textdraw((detail[4]), 500, red, 35)
 
-                ready = customtextdraw("Odpowiada:", (50,600), white, 25)
-                player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
-                player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
-                player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
-                player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                customtextdraw("Odpowiada:", (50,600), white, 25)
+                customtextdraw("Gracz 1", (200,600), gray, 25)
+                customtextdraw("Gracz 2", (400,600), gray, 25)
+                customtextdraw("Gracz 3", (600,600), gray, 25)
+                customtextdraw("Gracz 4", (800,600), gray, 25)
 
                 correct = detail[5]
 
@@ -373,10 +333,10 @@ while running:
 
                 #PLAYER 1
                 while (loop2):
-                    player1 = customtextdraw("Gracz 1", (200,600), green, 25)
-                    player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
-                    player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
-                    player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                    customtextdraw("Gracz 1", (200,600), green, 25)
+                    customtextdraw("Gracz 2", (400,600), gray, 25)
+                    customtextdraw("Gracz 3", (600,600), gray, 25)
+                    customtextdraw("Gracz 4", (800,600), gray, 25)
                     pygame.display.flip()
 
                     if button_push == p1_blue:
@@ -408,10 +368,10 @@ while running:
 
                 #PLAYER 2
                 while (loop3):
-                    player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
-                    player2 = customtextdraw("Gracz 2", (400,600), green, 25)
-                    player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
-                    player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                    customtextdraw("Gracz 1", (200,600), gray, 25)
+                    customtextdraw("Gracz 2", (400,600), green, 25)
+                    customtextdraw("Gracz 3", (600,600), gray, 25)
+                    customtextdraw("Gracz 4", (800,600), gray, 25)
                     pygame.display.flip()
 
                     if button_push == p2_blue:
@@ -443,10 +403,10 @@ while running:
 
                 #PLAYER 3
                 while (loop4):
-                    player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
-                    player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
-                    player3 = customtextdraw("Gracz 3", (600,600), green, 25)
-                    player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                    customtextdraw("Gracz 1", (200,600), gray, 25)
+                    customtextdraw("Gracz 2", (400,600), gray, 25)
+                    customtextdraw("Gracz 3", (600,600), green, 25)
+                    customtextdraw("Gracz 4", (800,600), gray, 25)
                     pygame.display.flip()
 
                     if button_push == p3_blue:
@@ -478,10 +438,10 @@ while running:
 
                 #PLAYER 4
                 while (loop5):
-                    player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
-                    player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
-                    player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
-                    player4 = customtextdraw("Gracz 4", (800,600), green, 25)
+                    customtextdraw("Gracz 1", (200,600), gray, 25)
+                    customtextdraw("Gracz 2", (400,600), gray, 25)
+                    customtextdraw("Gracz 3", (600,600), gray, 25)
+                    customtextdraw("Gracz 4", (800,600), green, 25)
                     pygame.display.flip()
 
                     if button_push == p4_blue:
@@ -593,13 +553,6 @@ while running:
     # MODE 2
     if (running == True) and (display_now == mode2):
 
-        p1_points = int(0)
-        p2_points = int(0)
-        p3_points = int(0)
-        p4_points = int(0)
-
-        quenum = int(5)
-        question_number = int(1)
         i = int(0)
 
         lines = open("/home/pi/Desktop/QUESTIONS.txt").readlines()
@@ -612,24 +565,24 @@ while running:
             while question_number <= quenum:
                 display.fill(black)
 
-                background = pygame.image.load("/home/pi/Desktop/question-layout.png").convert()
+                background = pygame.image.load(layout_question).convert()
                 display.blit(background, background_position)
 
                 line = questions[i]
                 detail = line.split(",")
 
-                num = textdraw(("Pytanie " + str(question_number)), 65, black, 25)
-                question = textdraw((detail[0]), 100, black, 45)
-                a = textdraw((detail[1]), 200, blue, 35)
-                b = textdraw((detail[2]), 300, green, 35)
-                c = textdraw((detail[3]), 400, yellow, 35)
-                d = textdraw((detail[4]), 500, red, 35)
+                textdraw(("Pytanie " + str(question_number)), 65, black, 25)
+                textdraw((detail[0]), 100, black, 45)
+                textdraw((detail[1]), 200, blue, 35)
+                textdraw((detail[2]), 300, green, 35)
+                textdraw((detail[3]), 400, yellow, 35)
+                textdraw((detail[4]), 500, red, 35)
 
-                ready = customtextdraw("Odpowiada:", (50,600), white, 25)
-                player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
-                player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
-                player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
-                player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                customtextdraw("Odpowiada:", (50,600), white, 25)
+                customtextdraw("Gracz 1", (200,600), gray, 25)
+                customtextdraw("Gracz 2", (400,600), gray, 25)
+                customtextdraw("Gracz 3", (600,600), gray, 25)
+                customtextdraw("Gracz 4", (800,600), gray, 25)
 
                 correct = detail[5]
 
@@ -671,10 +624,10 @@ while running:
 
                 while (loop3):
                     if (answering == "player1"):
-                        player1 = customtextdraw("Gracz 1", (200,600), green, 25)
-                        player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
-                        player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
-                        player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                        customtextdraw("Gracz 1", (200,600), green, 25)
+                        customtextdraw("Gracz 2", (400,600), gray, 25)
+                        customtextdraw("Gracz 3", (600,600), gray, 25)
+                        customtextdraw("Gracz 4", (800,600), gray, 25)
                         pygame.display.flip()
 
                         if button_push == p1_blue:
@@ -715,10 +668,10 @@ while running:
                             print("p1 ok")
                         
                     elif (answering == "player2"):
-                        player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
-                        player2 = customtextdraw("Gracz 2", (400,600), green, 25)
-                        player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
-                        player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                        customtextdraw("Gracz 1", (200,600), gray, 25)
+                        customtextdraw("Gracz 2", (400,600), green, 25)
+                        customtextdraw("Gracz 3", (600,600), gray, 25)
+                        customtextdraw("Gracz 4", (800,600), gray, 25)
                         pygame.display.flip()
 
                         if button_push == p2_blue:
@@ -759,10 +712,10 @@ while running:
                             print("p2 ok")
 
                     elif (answering == "player3"):
-                        player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
-                        player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
-                        player3 = customtextdraw("Gracz 3", (600,600), green, 25)
-                        player4 = customtextdraw("Gracz 4", (800,600), gray, 25)
+                        customtextdraw("Gracz 1", (200,600), gray, 25)
+                        customtextdraw("Gracz 2", (400,600), gray, 25)
+                        customtextdraw("Gracz 3", (600,600), green, 25)
+                        customtextdraw("Gracz 4", (800,600), gray, 25)
                         pygame.display.flip()
 
                         if button_push == p3_blue:
@@ -803,10 +756,10 @@ while running:
                             print("p3 ok")
 
                     elif (answering == "player4"):
-                        player1 = customtextdraw("Gracz 1", (200,600), gray, 25)
-                        player2 = customtextdraw("Gracz 2", (400,600), gray, 25)
-                        player3 = customtextdraw("Gracz 3", (600,600), gray, 25)
-                        player4 = customtextdraw("Gracz 4", (800,600), green, 25)
+                        customtextdraw("Gracz 1", (200,600), gray, 25)
+                        customtextdraw("Gracz 2", (400,600), gray, 25)
+                        customtextdraw("Gracz 3", (600,600), gray, 25)
+                        customtextdraw("Gracz 4", (800,600), green, 25)
                         pygame.display.flip()
 
                         if button_push == p4_blue:
@@ -881,10 +834,10 @@ while running:
         
         results = textdraw("Wyniki", 100, white, 45)
 
-        first = textdraw(scoring(0), 250, magenta, 45)
-        second = textdraw(scoring(1), 350, magenta, 45)
-        third = textdraw(scoring(2), 450, magenta, 45)
-        fourth = textdraw(scoring(3), 550, magenta, 45)
+        textdraw(scoring(0), 250, magenta, 45)
+        textdraw(scoring(1), 350, magenta, 45)
+        textdraw(scoring(2), 450, magenta, 45)
+        textdraw(scoring(3), 550, magenta, 45)
 
         quit = textdraw("powrót do menu", 650, red, 25)
 
