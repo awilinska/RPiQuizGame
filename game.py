@@ -849,6 +849,14 @@ while running:
             if (button_push == p1_red):
                 button_push = -1
                 loop = False
+                quenum = 0
+                lines = ""
+                questions = ""
+                p1_points = 0
+                p2_points = 0
+                p3_points = 0
+                p4_points = 0
+                question_number = 1
                 display_now = main_menu
 
 pygame.quit()
