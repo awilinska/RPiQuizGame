@@ -107,24 +107,19 @@ while running:
 
         while(loop):
             if (button_push == p1_blue):
-                button_push = -1
-                loop = False
                 display_now = quenum_1
 
-            if (button_push == p1_green):
-                button_push = -1
-                loop = False
+            elif (button_push == p1_green):
                 display_now = quenum_2
 
-            if (button_push == p1_yellow):
-                button_push = -1
-                loop = False
+            elif (button_push == p1_yellow):
                 display_now = controller_test
 
-            if (button_push == p1_red):
-                button_push = -1
-                loop = False
+            elif (button_push == p1_red):
                 display_now = details
+
+            button_push = -1
+            loop = False
 
     # INFO
     if (running == True) and (display_now == details):
@@ -245,27 +240,22 @@ while running:
         
         while(loop):
             if (button_push == p1_blue):
-                button_push = -1
-                loop = False
                 quenum = int(10)
                 display_now = info_mode1
 
-            if (button_push == p1_green):
-                button_push = -1
-                loop = False
+            elif (button_push == p1_green):
                 quenum = int(25)
                 display_now = info_mode1
 
-            if (button_push == p1_yellow):
-                button_push = -1
-                loop = False
+            elif (button_push == p1_yellow):
                 quenum = int(50)
                 display_now = info_mode1
 
-            if (button_push == p1_red):
-                button_push = -1
-                loop = False
+            elif (button_push == p1_red):
                 display_now = main_menu
+
+            button_push = -1
+            loop = False
     
     # ABOUT MODE 1
     if (running == True) and (display_now == info_mode1):
@@ -507,27 +497,22 @@ while running:
         
         while(loop):
             if (button_push == p1_blue):
-                button_push = -1
-                loop = False
                 quenum = int(10)
                 display_now = info_mode2
 
-            if (button_push == p1_green):
-                button_push = -1
-                loop = False
+            elif (button_push == p1_green):
                 quenum = int(25)
                 display_now = info_mode2
 
-            if (button_push == p1_yellow):
-                button_push = -1
-                loop = False
+            elif (button_push == p1_yellow):
                 quenum = int(50)
                 display_now = info_mode2
 
-            if (button_push == p1_red):
-                button_push = -1
-                loop = False
+            elif (button_push == p1_red):
                 display_now = main_menu
+
+            button_push = -1
+            loop = False
 
     # ABOUT MODE 2
     if (running == True) and (display_now == info_mode2):
