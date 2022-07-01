@@ -10,17 +10,17 @@ def draw_menu():
 
     textdraw("DOMOTURNIEJ - DOMOWY TURNIEJ WIEDZY", 100, black, 45)
 
-    textdraw("Tryb 1", 200, blue, 35)
-    textdraw("Wszyscy gracze odpowiadają na wszystkie pytania", 230, gray, 15)
+    textdraw("Gra", 200, blue, 35)
+    textdraw("Zmierzcie się w jednym z dwóch trybów gry", 230, gray, 15)
 
-    textdraw("Tryb 2", 300, green, 35)
-    textdraw("Gracze zgłaszają się do odpowiedzi na pytanie", 330, gray, 15)
+    textdraw("Test kontrolerów", 300, green, 35)
+    textdraw("Sprawdź działanie przycisków w kontrolerach", 330, gray, 15)
 
-    textdraw("Test kontrolerów", 400, yellow, 35)
-    textdraw("Sprawdź działanie przycisków w kontrolerach", 430, gray, 15)
+    textdraw("Informacje", 400, yellow, 35)
+    textdraw("Informacje i źródła", 430, gray, 15)
 
-    textdraw("Informacje", 500, red, 35)
-    textdraw("Informacje i źródła", 530, gray, 15)
+    textdraw("Wyjdź", 505, red, 35)
+    textdraw("Wyjście z gry", 535, gray, 15)
 
     textdraw("Podpowiedź: używaj klawiszy o odpowiednich kolorach na kontrolerze GRACZA 1, by poruszać się po menu", 600, gray, 20)
 
@@ -55,7 +55,8 @@ def draw_title():
     display.blit(background, background_position)
 
     textdraw("Domoturniej - domowy turniej wiedzy", height/2-100, black, 60)
-    textdraw("START", height/2+70, blue, 30)
+    textdraw("START", height/2+40, blue, 30)
+    textdraw("WYJDŹ", height/2+130, red, 30)
     textdraw("by Alicja Wilińska", height/2+200, gray, 15)
     textdraw("Podpowiedź: używaj klawiszy o odpowiednich kolorach na kontrolerze GRACZA 1, by poruszać się po menu", 600, gray, 20)
 
@@ -63,33 +64,14 @@ def draw_test():
     background = pygame.image.load(layout_waiting).convert()
     display.blit(background, background_position)
 
-    textdraw("TEST KONTROLERÓW", height/2 - 280, black, 40)
+    textdraw("TEST KONTROLERÓW", height/2 - 250, black, 40)
 
-    textdraw("Gracz 1", height/2 - 220, black, 30)
-    customtextdraw("niebieski", (200, height/2 - 180), gray, 25)
-    customtextdraw("zielony", (400, height/2 - 180), gray, 25)
-    customtextdraw("żółty", (600, height/2 - 180), gray, 25)
-    customtextdraw("czerwony", (800, height/2 - 180), gray, 25)
+    customtextdraw("Gracz 1", (300,200), black, 30)
+    customtextdraw("Gracz 2", (700,200), black, 30)
+    customtextdraw("Gracz 3", (300,400), black, 30)
+    customtextdraw("Gracz 4", (700,400), black, 30)
 
-    textdraw("Gracz 2", height/2 - 100, black, 30)
-    customtextdraw("niebieski", (200, height/2 - 60), gray, 25)
-    customtextdraw("zielony", (400, height/2 - 60), gray, 25)
-    customtextdraw("żółty", (600, height/2 - 60), gray, 25)
-    customtextdraw("czerwony", (800, height/2 - 60), gray, 25)
-
-    textdraw("Gracz 3", height/2 + 20, black, 30)
-    customtextdraw("niebieski", (200, height/2 + 60), gray, 25)
-    customtextdraw("zielony", (400, height/2 + 60), gray, 25)
-    customtextdraw("żółty", (600, height/2 + 60), gray, 25)
-    customtextdraw("czerwony", (800, height/2 + 60), gray, 25)
-
-    textdraw("Gracz 4", height/2 + 140, black, 30)
-    customtextdraw("niebieski", (200, height/2 + 180), gray, 25)
-    customtextdraw("zielony", (400, height/2 + 180), gray, 25)
-    customtextdraw("żółty", (600, height/2 + 180), gray, 25)
-    customtextdraw("czerwony", (800, height/2 + 180), gray, 25)
-
-    textdraw("Test zamknie się automatycznie w ciągu 5 sekund od wciśnięcia ostatniego przycisku.", height/2 + 280, gray, 20)
+    textdraw("Test zamknie się automatycznie w ciągu 15 sekund od uruchomienia.", height/2 + 280, gray, 20)
 
 def draw_info():
     background = pygame.image.load(layout_details).convert()
@@ -117,3 +99,17 @@ def draw_quenum():
     textdraw("Maraton pełen wiedzy", 430, gray, 15)
     
     textdraw("powrót do menu", 520, red, 35)
+
+def draw_modes():
+    background = pygame.image.load(layout_modes).convert()
+    display.blit(background, background_position)
+
+    textdraw("Wybierz tryb gry", 100, black, 45)
+    
+    textdraw("Wiedza", 275, blue, 35)
+    textdraw("Wszyscy gracze odpowiadają na wszystkie pytania", 305, gray, 15)
+
+    textdraw("Refleks", 375, green, 35)
+    textdraw("Gracze zgłaszają się do odpowiedzi na pytanie", 405, gray, 15)
+    
+    textdraw("powrót do menu", 485, red, 20)
