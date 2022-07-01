@@ -3,18 +3,19 @@ import pygame
 pygame.mixer.init()
 
 # SOUNDS
-question_sound = pygame.mixer.Sound("/home/pi/Desktop/que.mp3")
-answer_sound = pygame.mixer.Sound("/home/pi/Desktop/ans.mp3")
-results_sound = pygame.mixer.Sound("/home/pi/Desktop/app.mp3")
-waiting_sound = pygame.mixer.Sound("/home/pi/Desktop/wait.mp3")
-declaration_sound = pygame.mixer.Sound("/home/pi/Desktop/dec.mp3")
+question_sound = pygame.mixer.Sound("/home/pi/Desktop/RPI Quiz Game/que.mp3")
+answer_sound = pygame.mixer.Sound("/home/pi/Desktop/RPI Quiz Game/ans.mp3")
+results_sound = pygame.mixer.Sound("/home/pi/Desktop/RPI Quiz Game/app.mp3")
+waiting_sound = pygame.mixer.Sound("/home/pi/Desktop/RPI Quiz Game/wait.mp3")
+declaration_sound = pygame.mixer.Sound("/home/pi/Desktop/RPI Quiz Game/dec.mp3")
 
 #IMAGES
-layout_menu = "/home/pi/Desktop/layout-menu.png"
-layout_waiting = "/home/pi/Desktop/layout-waiting.png"
-layout_details = "/home/pi/Desktop/details-layout.png"
-layout_start = "/home/pi/Desktop/start-layout.png"
-layout_question = "/home/pi/Desktop/question-layout.png"
+layout_menu = "/home/pi/Desktop/RPI Quiz Game/layout-menu.png"
+layout_waiting = "/home/pi/Desktop/RPI Quiz Game/layout-waiting.png"
+layout_details = "/home/pi/Desktop/RPI Quiz Game/details-layout.png"
+layout_start = "/home/pi/Desktop/RPI Quiz Game/start-layout.png"
+layout_question = "/home/pi/Desktop/RPI Quiz Game/question-layout.png"
+layout_modes = "/home/pi/Desktop/RPI Quiz Game/modes-layout.png"
 
 # COLORS
 black = (0, 0, 0)
@@ -47,6 +48,7 @@ info_mode1 = 10
 info_mode2 = 11
 quenum_1 = 12
 quenum_2 = 13
+modes = 14
 
 # PLAYERS BUTTONS
 p1_blue = 7
