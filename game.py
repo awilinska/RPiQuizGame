@@ -1,18 +1,18 @@
 import pygame
 from pygame.locals import *
-from pygame import mixer
 from text_creator import *
 import RPi.GPIO as GPIO
 from ui import *
-import sys
 import time
 import random
 from variables import *
+from gpiozero import Button
 
 pygame.init()
 pygame.mixer.init()
 
 clock = pygame.time.Clock()
+pygame.mouse.set_visible(False) 
 
 button_time = time.time()
 button_push = -1
@@ -71,9 +71,6 @@ display_now = start_screen
 running = True
 
 while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
 
     pygame.display.update()
 
@@ -91,9 +88,12 @@ while running:
 
         while(loop):
             if (button_push == p1_blue):
-                button_push = -1
-                loop = False
                 display_now = main_menu
+            elif (button_push == p1_red):
+                running = False
+            
+            button_push = -1
+            loop = False
 
     # MAIN MENU
     if (running == True) and (display_now == main_menu):
@@ -107,16 +107,39 @@ while running:
 
         while(loop):
             if (button_push == p1_blue):
+                display_now = modes
+
+            elif (button_push == p1_green):
+                display_now = controller_test
+
+            elif (button_push == p1_yellow):
+                display_now = details
+
+            elif (button_push == p1_red):
+                running = False
+
+            button_push = -1
+            loop = False
+
+    # MODE SELECTION
+    if (running == True) and (display_now == modes):
+
+        display.fill(black)
+        draw_modes()
+
+        pygame.display.flip()
+
+        loop = True
+
+        while(loop):
+            if (button_push == p1_blue):
                 display_now = quenum_1
 
             elif (button_push == p1_green):
                 display_now = quenum_2
 
-            elif (button_push == p1_yellow):
-                display_now = controller_test
-
             elif (button_push == p1_red):
-                display_now = details
+                display_now = main_menu
 
             button_push = -1
             loop = False
@@ -145,8 +168,35 @@ while running:
             
         pygame.display.flip()
 
+        def drawButtonState(display, button, pos):
+            color = 150
+            if button.is_pressed:
+                color = 255
+            pygame.draw.circle(display, (color, color, color), pos, 35)
+
+        def drawPlayerState(display, buttons, startx):
+            x = startx
+            for b in buttons:
+                drawButtonState(display, b, (x, 280))
+                x = x + 80
+            return x
+
+        def drawPlayerState2(display, buttons, startx):
+            x = startx
+            for b in buttons:
+                drawButtonState(display, b, (x, 480))
+                x = x + 80
+            return x
+
+        fpsClock = pygame.time.Clock()
+
+        player1 = [ Button(4), Button(17), Button(22), Button(27) ]
+        player2 = [ Button(5), Button(6), Button(13), Button(19) ]
+        player3 = [ Button(12), Button(16), Button(21), Button(26) ]
+        player4 = [ Button(18), Button(23), Button(24), Button(25)]
+
         timer_start = time.time()
-        timer_stop = 5
+        timer_stop = 15
 
         loop = True
 
@@ -154,76 +204,16 @@ while running:
 
             timer = time.time() - timer_start
 
-            # PLAYER 1
-            if (button_push == p1_blue):
-                button_push = -1
-                loop = False
-                customtextdraw("niebieski", (200, height/2 - 180), blue, 25) 
-            if (button_push == p1_green):
-                button_push = -1
-                loop = False
-                customtextdraw("zielony", (400, height/2 - 180), green, 25)
-            if (button_push == p1_yellow):
-                button_push = -1
-                loop = False
-                customtextdraw("żółty", (600, height/2 - 180), yellow, 25)
-            if (button_push == p1_red):
-                button_push = -1
-                loop = False
-                customtextdraw("czerwony", (800, height/2 - 180), red, 25)
-
-            #PLAYER 2
-            if (button_push == p2_blue):
-                button_push = -1
-                loop = False
-                customtextdraw("niebieski", (200, height/2 - 60), blue, 25)
-            if (button_push == p2_green):
-                button_push = -1
-                loop = False
-                customtextdraw("zielony", (400, height/2 - 60), green, 25)
-            if (button_push == p2_yellow):
-                button_push = -1
-                loop = False
-                customtextdraw("żółty", (600, height/2 - 60), yellow, 25)
-            if (button_push == p2_red):
-                button_push = -1
-                loop = False
-                customtextdraw("czerwony", (800, height/2 - 60), red, 25)
-
-            #PLAYER 3
-            if (button_push == p3_blue):
-                button_push = -1
-                loop = False
-                customtextdraw("niebieski", (200, height/2 + 60), blue, 25)
-            if (button_push == p3_green):
-                button_push = -1
-                loop = False
-                customtextdraw("zielony", (400, height/2 + 60), green, 25)
-            if (button_push == p3_yellow):
-                button_push = -1
-                loop = False
-                customtextdraw("żółty", (600, height/2 + 60), yellow, 25)
-            if (button_push == p3_red):
-                button_push = -1
-                loop = False
-                customtextdraw("czerwony", (800, height/2 + 60), red, 25)
-
-            #PLAYER 4
-            if (button_push == p4_blue):
-                button_push = -1
-                loop = False
-                customtextdraw("niebieski", (200, height/2 + 180), blue, 25)
-            if (button_push == p4_green):
-                button_push = -1
-                loop = False
-                customtextdraw("zielony", (400, height/2 + 180), green, 25)
-            if (button_push == p4_yellow):
-                button_push = -1
-                loop = False
-                customtextdraw("żółty", (600, height/2 + 180), yellow, 25)
-            if (button_push == p4_red):
-                button_push = -1
-                customtextdraw("czerwony", (800, height/2 + 180), red, 25)
+            x = 230
+            x = drawPlayerState(display, player1, x)
+            x = x + 80
+            drawPlayerState(display, player2, x)
+            x = 230
+            drawPlayerState2(display, player3, x)
+            x = x + 400
+            drawPlayerState2(display, player4, x)
+            pygame.display.update()
+            fpsClock.tick(30)
 
             if timer > timer_stop:
                 loop = False
@@ -282,7 +272,7 @@ while running:
 
         i = int(0)
 
-        lines = open("/home/pi/Desktop/QUESTIONS.txt").readlines()
+        lines = open("/home/pi/Desktop/RPI Quiz Game/QUESTIONS.txt").readlines()
         questions = random.sample(lines, 25)
 
         loop = True
@@ -296,14 +286,14 @@ while running:
                 display.blit(background, background_position)
 
                 line = questions[i]
-                detail = line.split(",")
+                item = line.split(",")
 
                 textdraw(("Pytanie " + str(question_number)), 65, black, 25)
-                textdraw((detail[0]), 100, black, 45)
-                textdraw((detail[1]), 200, blue, 35)
-                textdraw((detail[2]), 300, green, 35)
-                textdraw((detail[3]), 400, yellow, 35)
-                textdraw((detail[4]), 500, red, 35)
+                textdraw((item[0]), 100, black, 45)
+                textdraw((item[1]), 200, blue, 35)
+                textdraw((item[2]), 300, green, 35)
+                textdraw((item[3]), 400, yellow, 35)
+                textdraw((item[4]), 500, red, 35)
 
                 customtextdraw("Odpowiada:", (50,600), white, 25)
                 customtextdraw("Gracz 1", (200,600), gray, 25)
@@ -311,7 +301,7 @@ while running:
                 customtextdraw("Gracz 3", (600,600), gray, 25)
                 customtextdraw("Gracz 4", (800,600), gray, 25)
 
-                correct = detail[5]
+                correct = item[5]
 
                 question_sound.play()
 
@@ -477,11 +467,6 @@ while running:
 
                 question_number = question_number + 1
                 i = i + 1
-            
-            print(p1_points)
-            print(p2_points)
-            print(p3_points)
-            print(p4_points)
 
             loop = False
             display_now = results
@@ -540,7 +525,7 @@ while running:
 
         i = int(0)
 
-        lines = open("/home/pi/Desktop/QUESTIONS.txt").readlines()
+        lines = open("/home/pi/Desktop/RPI Quiz Game/QUESTIONS.txt").readlines()
         questions = random.sample(lines, 25)
 
         loop = True
@@ -554,14 +539,14 @@ while running:
                 display.blit(background, background_position)
 
                 line = questions[i]
-                detail = line.split(",")
+                item = line.split(",")
 
                 textdraw(("Pytanie " + str(question_number)), 65, black, 25)
-                textdraw((detail[0]), 100, black, 45)
-                textdraw((detail[1]), 200, blue, 35)
-                textdraw((detail[2]), 300, green, 35)
-                textdraw((detail[3]), 400, yellow, 35)
-                textdraw((detail[4]), 500, red, 35)
+                textdraw((item[0]), 100, black, 45)
+                textdraw((item[1]), 200, blue, 35)
+                textdraw((item[2]), 300, green, 35)
+                textdraw((item[3]), 400, yellow, 35)
+                textdraw((item[4]), 500, red, 35)
 
                 customtextdraw("Odpowiada:", (50,600), white, 25)
                 customtextdraw("Gracz 1", (200,600), gray, 25)
@@ -569,7 +554,7 @@ while running:
                 customtextdraw("Gracz 3", (600,600), gray, 25)
                 customtextdraw("Gracz 4", (800,600), gray, 25)
 
-                correct = detail[5]
+                correct = item[5]
 
                 question_sound.play()
 
@@ -787,11 +772,6 @@ while running:
                 question_number = question_number + 1
                 i = i + 1
 
-            print(p1_points)
-            print(p2_points)
-            print(p3_points)
-            print(p4_points)
-
             loop = False
             display_now = results
 
@@ -800,7 +780,7 @@ while running:
         display.fill(black)
         results_sound.play()
 
-        background = pygame.image.load("/home/pi/Desktop/layout-results.png").convert()
+        background = pygame.image.load("/home/pi/Desktop/RPI Quiz Game/layout-results.png").convert()
         display.blit(background, background_position)
 
         scores = [('Gracz 1', p1_points),
