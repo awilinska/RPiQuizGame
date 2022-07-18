@@ -6,6 +6,8 @@ Code is build for 4 players (4 controllers, each with 4 tact switches). You can 
 You cand find a scheme for connecting switches to pins here: 
 https://drive.google.com/file/d/11t-c-RyykV49ZX7s99AbyPiJ6v6ZnS9n/view?usp=sharing
 
+PLEASE SAVE ALL THE FILES IN FOLDER /home/pi/Desktop/RPI Quiz Game, OTHERWISE PROJECT WILL NOT WORK.
+
 You can download used resources individually or in .ZIP archive from this link:
 PL version: https://drive.google.com/drive/folders/1RzCcup7-F9WJJ-bIYJ6SW_tVlXA5IZXv?usp=sharing
 ENG version: https://drive.google.com/drive/folders/1iScSTNkFEy-0QqyfbInXBag1A7NDawHB?usp=sharing
