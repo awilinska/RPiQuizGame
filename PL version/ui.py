@@ -32,7 +32,7 @@ def draw_info_mode1():
     background = pygame.image.load(layout_waiting).convert()
     display.blit(background, background_position)
 
-    textdraw("Tryb 1", 200, black, 45)
+    textdraw("Wiedza", 200, black, 45)
 
     textdraw("Każdy z graczy odpowiada po kolei na pytanie.", 300, black, 30)
     textdraw("Numer gracza, który powinien udzielić odpowiedzi podświetla się na zielono.", 350, black, 30)
@@ -43,7 +43,7 @@ def draw_info_mode2():
     background = pygame.image.load(layout_waiting).convert()
     display.blit(background, background_position)
 
-    textdraw("Tryb 2", 200, black, 45)
+    textdraw("Refleks", 200, black, 45)
 
     textdraw("Gracz zgłasza się do odpowiedzi na pytanie klikając niebieski przycisk.", 300, black, 30)
     textdraw("Numer gracza, który powinien udzielić odpowiedzi podświetla się na zielono.", 350, black, 30)
