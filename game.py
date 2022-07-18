@@ -273,7 +273,7 @@ while running:
         i = int(0)
 
         lines = open("/home/pi/Desktop/RPI Quiz Game/QUESTIONS.txt").readlines()
-        questions = random.sample(lines, 25)
+        questions = random.sample(lines, quenum)
 
         loop = True
 
@@ -526,7 +526,7 @@ while running:
         i = int(0)
 
         lines = open("/home/pi/Desktop/RPI Quiz Game/QUESTIONS.txt").readlines()
-        questions = random.sample(lines, 25)
+        questions = random.sample(lines, quenum)
 
         loop = True
 
