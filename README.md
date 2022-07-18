@@ -10,6 +10,8 @@ You can download used resources individually or in .ZIP archive from this link:
 PL version: https://drive.google.com/drive/folders/1RzCcup7-F9WJJ-bIYJ6SW_tVlXA5IZXv?usp=sharing
 ENG version: https://drive.google.com/drive/folders/1iScSTNkFEy-0QqyfbInXBag1A7NDawHB?usp=sharing
 
+You can find folder with Polish version in the repository. The files text_creator.py and variables.py are the same for both language versions.
+
 All of the sounds came from the https://mixkit.co/free-sound-effects/ , you have download it by your own according to the MixKit license.
 ans.mp3 - Retro arcade casino notification
 que.mp3 - Arcade video game bonus
