@@ -54,7 +54,7 @@ def draw_title():
     background = pygame.image.load(layout_start).convert()
     display.blit(background, background_position)
 
-    textdraw("HOMEPETITON - KNOWLEDGE COMPETITION!", height/2-100, black, 60)
+    textdraw("HOMEPETITON - KNOWLEDGE COMPETITION!", height/2-100, black, 50)
     textdraw("START", height/2+40, blue, 30)
     textdraw("QUIT", height/2+130, red, 30)
     textdraw("by Alicja Wilińska", height/2+200, gray, 15)
@@ -78,7 +78,8 @@ def draw_info():
     display.blit(background, background_position)
 
     textdraw("Autor: Alicja Wilińska", height/2, black, 30)
-    textdraw("This project is being developed as part of a thesis at the West Pomeranian Business School (Stettin).", height/2+70, black, 30)
+    textdraw("This project is being developed as part of a thesis", height/2+70, black, 30)
+    textdraw("at the West Pomeranian Business School (Stettin).", height/2+100, black, 30)
     
     textdraw("Back", height/2+200, red, 15)
     
