@@ -1,6 +1,5 @@
 # RPiQuizGame
-Project overview: https://youtu.be/gADFIJfVdk0
-https://www.instructables.com/HomePetition-Raspberry-Pi-Quiz-Game/
+Project overview: https://youtu.be/gADFIJfVdk0 \nhttps://www.instructables.com/HomePetition-Raspberry-Pi-Quiz-Game/
 
 ![h1](https://user-images.githubusercontent.com/72753653/200140636-806f9711-3b2a-4186-b988-c08d1fd3317f.png)
 
