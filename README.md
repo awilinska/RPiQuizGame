@@ -1,4 +1,7 @@
 # RPiQuizGame
+Project overview: https://youtu.be/gADFIJfVdk0
+
+![h1](https://user-images.githubusercontent.com/72753653/200140636-806f9711-3b2a-4186-b988-c08d1fd3317f.png)
 
 Please note that project requires Raspberry Pi computer with Python (at least version 3.9.6) and PyGame 2.1.2 installed. 
 
@@ -23,6 +26,8 @@ wait.mp3 - Mystwrious bass pulse
 
 You can add your own questions to the QUESTIONS.TXT file (there are 50 example question in the file). Please use the format, otherwise questions will not work. 
 FORMAT (one line - one question): QUESTION,ANSWER 1,ANSWER 2,ANSWER 3,ANSWER 4,CORRECT ANSWER(a,b,c or d)
+
+![h2](https://user-images.githubusercontent.com/72753653/200140648-1932b7de-d4da-4e7c-92c2-9257b3571c13.png)
 
 You can download/modify this software. Please do not delete author name from the title screen and information tab. 
 
